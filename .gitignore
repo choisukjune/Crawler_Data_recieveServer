@@ -1,0 +1,8 @@
+# directory
+DataBase/0/
+Log/
+
+# files
+
+*.result
+_cmd.exe
