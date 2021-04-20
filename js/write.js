@@ -143,12 +143,46 @@ var paramToObject = function( url ){
 		res.setHeader( "Access-Control-Allow-Methods", "OPTIONS,POST,GET" );
 		
 		
-		fs.writeFileSync( "../crawler_sale_data/sites/cafe_GOCD/html/" + data.p + ".html" , data.html, { flag : "w" } );
+		fs.writeFileSync( "../crawler_sale_data/sites/"+ data.siteNm +"/html/" + data.p + ".html" , data.data, { flag : "w" } );
 
 		res.end( data.p + " is complete!" )	
 
 	});
+	/**
+	 * 쿼리파일을 실행하는 라우터
+	 * @function
+	 * @param {http.ClientRequest} req
+	 * <code>
+		{
 
+		}
+	* </code>
+	*
+	* @param {http.ClientResponse} res
+	* <code>
+		{
+
+		}
+	* </code>
+	*
+	* @example
+	* <code>
+		http://localhost:8888/writeHtml?date=20210101
+	* </code>
+	*/
+	global.server.addRouter("/writeJson",function( req, res, data ){
+//debugger;
+		res.statusCode = 200;
+		res.setHeader( "Access-Control-Allow-Headers", "Content-Type" );
+		res.setHeader( "Access-Control-Allow-Origin", "*" );
+		res.setHeader( "Access-Control-Allow-Methods", "OPTIONS,POST,GET" );
+		
+		
+		fs.writeFileSync( "../crawler_sale_data/sites/"+ data.siteNm +"/json/" + data.p + ".json" , data.data, { flag : "w" } );
+
+		res.end( data.p + " is complete!" )	
+
+	});
 
 /*
 window.maxPage = 10;
