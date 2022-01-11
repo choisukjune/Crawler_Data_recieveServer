@@ -89,13 +89,11 @@ global.server = http.createServer(function(req, res){
         var jsonString = '';
 
         req.on('data', function (data) {
-			debugger;
             jsonString += data;
         });
 
         req.on('end', function () {
 			//console.log(JSON.parse(jsonString));
-			debugger;
 			res.statusCode = 200;
 			global.ROUTER_LIST[ routerNm ]( req, res, JSON.parse(jsonString) );
         });

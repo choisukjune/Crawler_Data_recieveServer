@@ -136,14 +136,21 @@ var paramToObject = function( url ){
 	* </code>
 	*/
 	global.server.addRouter("/writeHtml",function( req, res, data ){
-
+		debugger;
 		res.statusCode = 200;
 		res.setHeader( "Access-Control-Allow-Headers", "Content-Type" );
 		res.setHeader( "Access-Control-Allow-Origin", "*" );
 		res.setHeader( "Access-Control-Allow-Methods", "OPTIONS,POST,GET" );
 		
+		if( data.siteNm != "coupang" )
+		{
+			fs.writeFileSync( "../crawler_sale_data/sites/"+ data.siteNm +"/html/" + data.p + ".html" , data.data, { flag : "w" } );	
+		}
+		else
+		{
+			fs.writeFileSync( "D:/workspace_macro/HttpServer_Default/electron_root/html/" + data.p + ".html" , data.data, { flag : "w" } );
+		}
 		
-		fs.writeFileSync( "../crawler_sale_data/sites/"+ data.siteNm +"/html/" + data.p + ".html" , data.data, { flag : "w" } );
 
 		res.end( data.p + " is complete!" )	
 
